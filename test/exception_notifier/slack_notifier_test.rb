@@ -71,7 +71,6 @@ class SlackNotifierTest < ActiveSupport::TestCase
     options = {
       webhook_url: "http://slack.webhook.url",
       include_stacktrace: 1
-      }
     }
     slack_notifier = ExceptionNotifier::SlackNotifier.new(options)
     assert slack_notifier.instance_variable_get('@full_stack')
@@ -89,5 +88,9 @@ class SlackNotifierTest < ActiveSupport::TestCase
 
   def fake_notification
     "An exception occurred: '#{fake_exception.message}' on '#{fake_exception.backtrace.first}'"
+  end
+
+  def fake_notification_full
+    "An exception occurred: '#{fake_exception.message}' on '#{fake_exception.backtrace.join('')}'"
   end
 end
