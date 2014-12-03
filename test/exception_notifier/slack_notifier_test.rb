@@ -67,6 +67,16 @@ class SlackNotifierTest < ActiveSupport::TestCase
     assert_nil slack_notifier.call(fake_exception)
   end
 
+  test "should return full stacktrace if parameter :include_stacktrace given" do
+    options = {
+      webhook_url: "http://slack.webhook.url",
+      include_stacktrace: 1
+      }
+    }
+    slack_notifier = ExceptionNotifier::SlackNotifier.new(options)
+    assert slack_notifier.instance_variable_get('@full_stack')
+  end
+
   private
 
   def fake_exception
