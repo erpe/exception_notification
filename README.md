@@ -573,9 +573,12 @@ Whatever::Application.config.middleware.use ExceptionNotification::Rack,
   :slack => {
     :webhook_url => "[Your webhook url]",
     :channel => "#exceptions",
+         
     :additional_parameters => {
       :icon_url => "http://image.jpg"
-    }
+    },
+    # add following line to get the full stacktrace - or dont
+    :include_stacktrace => 1
   }
 ```
 
